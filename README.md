@@ -1,6 +1,6 @@
 # HytaleLauncherFlake
 
-A flake for easy use of the Hytale Launcher on NixOS.
+A flake for easy use of the Hytale Launcher on NixOS. The launcher is automatically downloaded from Hytale's official servers on first run.
 
 ## Installation
 
@@ -55,18 +55,39 @@ home.packages = [
 ];
 ```
 
+## How It Works
+
+This flake:
+
+1. **Creates an FHS environment** with all required dependencies (GTK3, WebKit, etc.)
+2. **Downloads** the launcher on first run from Hytale's official servers
+3. **Auto-updates** - the launcher manages its own updates from `~/.local/share/hytale-launcher/`
+
+No manual hash updates needed - the launcher is always fetched fresh on first install!
+
 ## Dependencies
 
-This flake automatically handles the following dependencies:
+This flake automatically provides the following dependencies:
 - GTK3
 - WebKit2GTK 4.1
 - GLib
 - GDK Pixbuf
 - libsoup 3
-- Cairo
-- Pango
+- Cairo / Pango
 - OpenSSL
+- X11/Wayland libraries
+- Vulkan/Mesa
+- PulseAudio / ALSA
 - And more...
+
+## Reinstalling / Updating
+
+To force a fresh download of the launcher:
+
+```bash
+rm -rf ~/.local/share/hytale-launcher
+hytale-launcher
+```
 
 ## Troubleshooting
 
