@@ -30,7 +30,7 @@
         ];
 
         # FHS environment that downloads launcher at runtime
-        hytale-launcher = pkgs.buildFHSEnv {
+        hytale-launcher-fhs = pkgs.buildFHSEnv {
           name = "hytale-launcher";
 
           targetPkgs = pkgs: runtimeDeps ++ (with pkgs; [
@@ -98,6 +98,47 @@
             platforms = [ "x86_64-linux" ];
             mainProgram = "hytale-launcher";
           };
+        };
+
+        # Desktop entry file
+        desktopItem = pkgs.makeDesktopItem {
+          name = "hytale-launcher";
+          desktopName = "Hytale Launcher";
+          comment = "Official Hytale Game Launcher";
+          exec = "hytale-launcher";
+          icon = "hytale-launcher";
+          terminal = false;
+          type = "Application";
+          categories = [ "Game" ];
+          keywords = [ "hytale" "game" "launcher" ];
+        };
+
+        # Fetch the Hytale icon
+        hytaleIcon = pkgs.fetchurl {
+          url = "https://hytale.com/favicon.ico";
+          hash = "sha256-eniMb/wct+vjtzXF2z8Z1XPBmwabjV8RCDyd8J1QLT0=";
+        };
+
+        # Convert ico to png for better compatibility
+        hytaleIconPng = pkgs.runCommand "hytale-launcher-icon" {
+          nativeBuildInputs = [ pkgs.imagemagick ];
+        } ''
+          mkdir -p $out
+          # Extract the largest icon from the ico file and convert to png
+          convert ${hytaleIcon} -thumbnail 256x256 -alpha on -background none -flatten $out/hytale-launcher.png
+        '';
+
+        # Final package with desktop integration
+        hytale-launcher = pkgs.symlinkJoin {
+          name = "hytale-launcher";
+          paths = [ hytale-launcher-fhs desktopItem ];
+          postBuild = ''
+            mkdir -p $out/share/icons/hicolor/256x256/apps
+            cp ${hytaleIconPng}/hytale-launcher.png $out/share/icons/hicolor/256x256/apps/hytale-launcher.png
+            
+            mkdir -p $out/share/pixmaps
+            cp ${hytaleIconPng}/hytale-launcher.png $out/share/pixmaps/hytale-launcher.png
+          '';
         };
 
       in {
