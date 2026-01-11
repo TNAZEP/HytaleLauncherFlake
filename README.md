@@ -7,7 +7,7 @@ A flake for easy use of the Hytale Launcher on NixOS. The launcher is automatica
 ### Run directly without installing
 
 ```bash
-nix run github:YOUR_USERNAME/HytaleLauncherFlake
+nix run github:TNAZEP/HytaleLauncherFlake
 ```
 
 Or from a local clone:
@@ -19,7 +19,7 @@ nix run .
 ### Install to your profile
 
 ```bash
-nix profile install github:YOUR_USERNAME/HytaleLauncherFlake
+nix profile install github:TNAZEP/HytaleLauncherFlake
 ```
 
 ### Add to your NixOS configuration
@@ -30,7 +30,7 @@ Add the flake to your inputs in `flake.nix`:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hytale-launcher.url = "github:YOUR_USERNAME/HytaleLauncherFlake";
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake;
   };
 
   outputs = { self, nixpkgs, hytale-launcher, ... }@inputs: {
