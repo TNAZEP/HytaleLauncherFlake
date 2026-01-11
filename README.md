@@ -19,7 +19,7 @@ nix run .
 ### Install to your profile
 
 ```bash
-nix profile install ithub:TNAZEP/HytaleLauncherFlake
+nix profile install github:TNAZEP/HytaleLauncherFlake
 ```
 
 ### Add to your NixOS configuration
@@ -30,7 +30,7 @@ Add the flake to your inputs in `flake.nix`:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hytale-launcher.url = "github:ithub:TNAZEP/HytaleLauncherFlake;
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake;
   };
 
   outputs = { self, nixpkgs, hytale-launcher, ... }@inputs: {
