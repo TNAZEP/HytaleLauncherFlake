@@ -27,6 +27,7 @@
           atk
           openssl
           zlib
+          icu
         ];
 
         # FHS environment that downloads launcher at runtime
