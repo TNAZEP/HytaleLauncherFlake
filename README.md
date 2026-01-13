@@ -1,3 +1,10 @@
+<div align="center">
+
+# ‼️‼️‼️ Disclaimer ‼️‼️‼️
+This flake was created before the launch of the game, it works perfectly for the launcher, but I give no guarantees there wont be issues upon game launch. As the game releases I will fix any issues that might occur as fast as possible.
+
+</div>
+
 # HytaleLauncherFlake
 
 A flake for easy use of the Hytale Launcher on NixOS. The launcher is automatically downloaded from Hytale's official servers on first run.
