@@ -37,7 +37,7 @@ Add the flake to your inputs in `flake.nix`:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake;
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };
 
   outputs = { self, nixpkgs, hytale-launcher, ... }@inputs: {
