@@ -52,6 +52,8 @@
             glib
             hicolor-icon-theme
             adwaita-icon-theme
+            icu
+            libGL
             # Tools for downloading and patching
             curl
             unzip
